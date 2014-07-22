@@ -7,11 +7,13 @@ var NORM_FACTOR = 5;  // This factor allows to normalize ribbon width with respe
 var MIN_CTRL_CHANGE = 5;
 var TEXCOORDU_INC = 0.1;
 
-var LOOPING_AT_INIT = true;
+var LOOPING_AT_INIT = true;       // Looping on/off when the program starts
+var DISSAPEARING_AT_INIT = false; // Dissapearing stroke (while drawing) on/off when the program starts
+var FIXED_STROKE_AT_INIT = false; // The strokes don't fade out if true.
+
 var INVISIBLE_ALPHA = 1;    // Alpha at which a stroke is considered invisible
 var MAX_GROUP_TIME = 5;     // Maximum between two consecutive strokes to be considered within the same loop
 var LOOP_MULTIPLIER = 1;    // How many times slower the loop is with respect to the original stroke
-var FIXED_STROKE = false;   // The strokes don't fade out if true.
 var DELETE_FACTOR = 0.9;
 
 

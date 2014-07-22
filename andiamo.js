@@ -1,13 +1,11 @@
 var canvas;
 
 var layers = [];
-// ArrayList<Stroke>[] layers;
-// int currLayer;
-// ArrayList<PImage> textures;
-// int currTexture;
 var currGesture = null;
 var lastGesture = null;
 var looping = false;
+var fixed = false;
+var dissapearing = false;
 var grouping = false;
 var currColor = [255, 255, 255];
 var currAlpha = 150;
@@ -44,7 +42,6 @@ function draw() {
       var gesture = layers[i][j]
       gesture.update(t);
       gesture.draw();
-      // println("draw stroke " + j + " in layer " + i);
     }
   }
   if (currGesture) {
@@ -56,30 +53,28 @@ function draw() {
 }
 
 function startup() {
-  //tablet = new Tablet(this); 
   initRibbons();
-  // textures = new ArrayList<PImage>();  
-  // for (int i = 0; i < TEXTURE_FILES.length; i++) {
-  //   textures.add(loadImage(TEXTURE_FILES[i]));    
-  // }
   
   looping = LOOPING_AT_INIT;
   println("Looping: " +  looping);
+
+  fixed = FIXED_STROKE_AT_INIT;
+  println("Fixed: " +  fixed);
+
+  dissapearing = DISSAPEARING_AT_INIT;
+  println("Dissapearing: " +  looping);  
   
   grouping = false;
   println("Gouping: " +  grouping);
-  
-  // currTexture = 0;
-  // textureMode(NORMAL);
  
   layers = [null, null, null, null];
   for (var i = 0; i < 4; i++) {
     layers[i] = [];
   }
-  // loadDrawing();
+
   currLayer = 0;
   lastGesture = null;
-  currGesture = new StrokeGesture(0, /*currTexture,*/ lastGesture);
+  currGesture = new StrokeGesture(0, dissapearing, fixed, lastGesture);
   println("Selected stroke layer: " + 1);  
 }
 

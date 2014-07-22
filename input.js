@@ -9,7 +9,7 @@ function mousePressed() {
     connected = true;    
   }
   
-  currGesture = new StrokeGesture(t0/*, currTexture*/, lastGesture);
+  currGesture = new StrokeGesture(t0, dissapearing, fixed, lastGesture);
   
   if (connected) {
     lastGesture.next = currGesture;
@@ -38,6 +38,7 @@ function mouseReleased() {
 }
 
 function keyPressed() {
+  println(keyCode);
   if (keyCode == 38) { // UP
     LOOP_MULTIPLIER += 1; 
     println("Loop multiplier: " + LOOP_MULTIPLIER);
@@ -61,7 +62,7 @@ function keyPressed() {
       ascale = constrain(ascale + 0.05, 0, 1);
       gesture.setAlphaScale(ascale);   
     }      
-  } else if (key == ' ') {
+  } else if (key == ' ') { // SPACE
     looping = !looping;
     println("Looping: " + looping);
   } else if (keyCode == 13) { // ENTER
@@ -79,8 +80,11 @@ function keyPressed() {
     }
     println("Delete layer");
   } else if (keyCode == 16) { // SHIFT
-    FIXED_STROKE = !FIXED_STROKE;
-    println("Fixed: " + FIXED_STROKE);
+    fixed = !fixed;
+    println("Fixed: " + fixed);
+  } else if (keyCode == 17) { // CONTROL
+    dissapearing = !dissapearing;
+    println("Dissapearing lines: " + dissapearing);
   } else if (key == '1') {
     currLayer = 0;
     println("Selected stroke layer: " + 1);
